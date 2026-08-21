@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Poppins:wght@300;400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: url(../images/bg-cse.jpg) no-repeat center center/cover;
+    padding: 20px;
+    color: #333; /* Changed to dark color for better readability */
+}
+
+/* Full-page glass overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 0;
+}
+
+/* Main wrapper */
+.wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ====== Headings ====== */
+h1 {
+    font-family: "Philosopher", serif;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1.03;
+    color: #2c3e50; /* Dark blue for better contrast */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #2c3e50; /* Dark blue for better contrast */
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 18px;
+    color: #2c3e50; /* Dark blue for better contrast */
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* ====== Sections ====== */
+.section {
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8)); /* More opaque white */
+    border: 1px solid rgba(0,0,0,0.1); /* Darker border */
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+    color: #333; /* Dark text color */
+}
+
+/* ====== Tables ====== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.95); /* Solid white background */
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+    color: #333; /* Dark text color */
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* Darker borders */
+}
+
+th {
+    background: linear-gradient(180deg, #2c3e50, #34495e); /* Dark blue gradient */
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff; /* White text on dark headers */
+}
+
+td {
+    font-size: 14px;
+    color: #333; /* Dark text color */
+}
+
+/* Alternate row colors */
+tr:nth-child(even) {
+    background: rgba(0,0,0,0.02); /* Very light gray */
+}
+
+tr:hover {
+    background: rgba(0,0,0,0.05); /* Light gray on hover */
+}
+
+/* ====== Tickets ====== */
+.ticket {
+    background: rgba(255,255,255,0.95); /* Solid white background */
+    border: 1px solid rgba(0,0,0,0.1); /* Darker border */
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    color: #333; /* Dark text color */
+}
+
+.ticket p {
+    margin: 8px 0;
+    color: #333; /* Dark text color */
+    line-height: 1.5;
+}
+
+.ticket strong {
+    color: #2c3e50; /* Dark blue for strong text */
+    font-weight: 600;
+}
+
+/* ====== Replies ====== */
+.reply {
+    background: rgba(248,249,250,0.9); /* Light gray background */
+    color: #333; /* Dark text color */
+    padding: 15px;
+    margin: 12px 0;
+    border-left: 4px solid #007bff; /* Blue accent */
+    border-radius: 6px;
+}
+
+.reply p {
+    margin: 5px 0;
+    color: #333; /* Dark text color */
+}
+
+.reply strong {
+    color: #2c3e50; /* Dark blue for strong text */
+}
+
+.reply small {
+    color: #666; /* Dark gray for small text */
+}
+
+/* ====== Empty Placeholder ====== */
+.empty {
+    color: #666; /* Dark gray */
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ====== Form ====== */
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 12px 14px;
+    border: 1px solid #ccc; /* Darker border */
+    border-radius: 8px;
+    background: rgba(255,255,255,0.95); /* Solid white */
+    color: #333; /* Dark text color */
+    font-size: 14px;
+    resize: vertical;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #007bff; /* Blue focus */
+    background: #fff; /* Solid white */
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+textarea::placeholder {
+    color: #999; /* Dark gray placeholder */
+}
+
+/* ====== Buttons ====== */
+button, input[type="submit"] {
+    background: linear-gradient(90deg, #007bff, #0056b3); /* Blue gradient */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+button:hover, input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    background: linear-gradient(90deg, #0056b3, #004085); /* Darker blue on hover */
+    color: #fff;
+}
+
+/* Navigation buttons */
+.wrapper > button {
+    margin: 10px 10px 10px 0;
+    padding: 10px 18px;
+}
+
+/* ====== Status Colors ====== */
+/* Status styling - using Thymeleaf inline styles will work with this */
+[style*="color: orange"] {
+    color: #e67e22 !important; /* Darker orange */
+    font-weight: 600;
+}
+
+[style*="color: green"] {
+    color: #27ae60 !important; /* Darker green */
+    font-weight: 600;
+}
+
+[style*="color: blue"] {
+    color: #2980b9 !important; /* Darker blue */
+    font-weight: 600;
+}
+
+/* ====== Misc ====== */
+small {
+    color: #666; /* Dark gray */
+    font-size: 13px;
+}
+
+p {
+    line-height: 1.5;
+    color: #333; /* Dark text color */
+}
+
+/* ====== Responsive Design ====== */
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .section {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .ticket {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    th, td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    textarea {
+        padding: 10px 12px;
+        height: 70px;
+    }
+
+    button, input[type="submit"] {
+        padding: 10px 16px;
+        font-size: 13px;
+        width: 100%;
+    }
+
+    .wrapper > button {
+        width: auto;
+        margin: 5px 5px 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .wrapper {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .section {
+        padding: 15px;
+    }
+
+    .ticket {
+        padding: 12px;
+    }
+
+    .reply {
+        padding: 12px;
+    }
+}

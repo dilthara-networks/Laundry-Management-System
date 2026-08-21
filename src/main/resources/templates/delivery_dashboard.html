@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Delivery Coordinator Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/dashboard_common.css}" />
+  <link rel="stylesheet" th:href="@{/css/delivery_dashboard.css}" />
+  <style>
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f0f0f0; }
+    input, select { margin: 5px 0; }
+    button, input[type="submit"] { padding: 6px 12px; margin: 5px; }
+    form { display: inline; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+<h1>Delivery Coordinator Dashboard</h1>
+
+<h2>Assign Deliveries</h2>
+<div th:if="${orders == null or #lists.isEmpty(orders)}">
+  <p>No orders ready for delivery.</p>
+</div>
+<table th:if="${orders != null and not #lists.isEmpty(orders)}">
+  <tr><th>Order ID</th><th>Assign Delivery</th></tr>
+  <tr th:each="order : ${orders}">
+    <td th:text="${order.id}"></td>
+    <td>
+      <form th:action="@{/delivery/assign}" method="post">
+        <input type="hidden" name="orderId" th:value="${order.id}" />
+        <div>
+          Driver: <input type="text" name="driver" required placeholder="Driver name" />
+        </div>
+        <div>
+          Schedule: <input type="date" name="schedule" required />
+        </div>
+        <input type="submit" value="Assign" />
+      </form>
+    </td>
+  </tr>
+</table>
+
+<h2>Current Deliveries</h2>
+<div th:if="${deliveries == null or #lists.isEmpty(deliveries)}">
+  <p>No active deliveries.</p>
+</div>
+<table th:if="${deliveries != null and not #lists.isEmpty(deliveries)}">
+  <tr>
+    <th>ID</th><th>Order ID</th><th>Driver</th><th>Status</th><th>Schedule</th><th>Update Status</th>
+  </tr>
+  <tr th:each="delivery : ${deliveries}">
+    <td th:text="${delivery.id}"></td>
+    <td th:text="${delivery.order?.id}"></td>
+    <td th:text="${delivery.driver}"></td>
+    <td>
+      <span th:text="${delivery.status}"
+            th:style="${delivery.status == 'delivered'} ? 'color:green' :
+                     (${delivery.status == 'in_transit'} ? 'color:orange' : 'color:blue')">
+      </span>
+    </td>
+    <td th:text="${#temporals.format(delivery.schedule, 'MMM dd, yyyy')}"></td>
+    <td>
+      <form th:action="@{/delivery/update-status/{id}(id=${delivery.id})}" method="post">
+        <select name="status">
+          <option value="assigned" th:selected="${delivery.status == 'assigned'}">Assigned</option>
+          <option value="in_transit" th:selected="${delivery.status == 'in_transit'}">In Transit</option>
+          <option value="delivered" th:selected="${delivery.status == 'delivered'}">Delivered</option>
+        </select>
+        <input type="submit" value="Update" />
+      </form>
+    </td>
+  </tr>
+</table>
+
+<br>
+<button onclick="location.href='/logout'">Back to Staff Home</button>
+<button onclick="location.href='/logout'">Logout</button>
+</div>
+</body>
+</html>

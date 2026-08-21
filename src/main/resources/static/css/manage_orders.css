@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Poppins:wght@300;400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url(../images/bg-login.jpg) no-repeat center center/cover;
+    padding: 20px;
+    color: #fff;
+}
+
+/* Full-page glass overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 0;
+}
+
+/* Main content */
+body > * {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Header */
+h1 {
+    font-family: "Philosopher", serif;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1.03;
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    margin: 20px 0;
+}
+
+/* Table header */
+thead th {
+    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.1));
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Table cells */
+tbody td {
+    padding: 16px 20px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.95);
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Alternate row colors */
+tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.02);
+}
+
+tbody tr:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Actions cell styling */
+td:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Form styling for action buttons */
+form[style*="display:inline"] {
+    display: inline !important;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+/* Accept button styling */
+form[style*="display:inline"]:first-child input[type="submit"] {
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    margin: 0;
+    width: auto;
+    min-width: 80px;
+    border: none;
+}
+
+form[style*="display:inline"]:first-child input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+    background: linear-gradient(90deg, #45a049, #4CAF50);
+}
+
+/* Decline button styling */
+form[style*="display:inline"]:last-child input[type="submit"] {
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(90deg, #f44336, #d32f2f);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    margin: 0;
+    width: auto;
+    min-width: 80px;
+    border: none;
+}
+
+form[style*="display:inline"]:last-child input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3);
+    background: linear-gradient(90deg, #d32f2f, #f44336);
+}
+
+/* Status styling - make status more prominent */
+td:nth-child(5) {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Style different statuses with colors */
+td:nth-child(5):contains("pending") {
+    color: #ffa726;
+}
+
+td:nth-child(5):contains("accepted") {
+    color: #4CAF50;
+}
+
+td:nth-child(5):contains("declined") {
+    color: #f44336;
+}
+
+td:nth-child(5):contains("completed") {
+    color: #2196F3;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    body > * {
+        max-width: 95%;
+        padding: 0 10px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 32px;
+        margin: 15px 0 25px 0;
+    }
+
+    thead th, tbody td {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    td:last-child {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    form[style*="display:inline"] input[type="submit"] {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    thead th, tbody td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    /* Hide less important columns on mobile */
+    td:nth-child(1), /* ID */
+    th:nth-child(1) {
+        display: none;
+    }
+
+    td:last-child {
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    form[style*="display:inline"] input[type="submit"] {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-width: 70px;
+    }
+}

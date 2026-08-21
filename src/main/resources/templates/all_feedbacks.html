@@ -1,0 +1,19 @@
+<!-- src/main/resources/templates/all_feedbacks.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Feedbacks</title>
+    <link rel="stylesheet" th:href="@{/css/all_feedbacks.css}" />
+</head>
+<body>
+<h1>All Feedbacks</h1>
+<table>
+    <tr><th>ID</th><th>Customer</th><th>Content</th></tr>
+    <tr th:each="feedback : ${feedbacks}">
+        <td th:text="${feedback.id}"></td>
+        <td th:text="${feedback.customer.firstName}"></td>
+        <td th:text="${feedback.content}"></td>
+    </tr>
+</table>
+</body>
+</html>

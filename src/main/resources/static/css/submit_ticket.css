@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Poppins:wght@300;400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: url(../images/bg-cse.jpg) no-repeat center center/cover;
+    padding: 20px;
+    color: #fff;
+    justify-items: center;
+}
+
+/* Full-page glass overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 0;
+}
+
+/* Main content container */
+body > * {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styling */
+h1 {
+    font-family: "Philosopher", serif;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1.03;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Welcome message */
+p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: rgba(255,255,255,0.95);
+    line-height: 1.5;
+}
+
+p strong {
+    color: #f6f6f6;
+    font-weight: 600;
+}
+
+/* Ticket containers */
+.ticket {
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.06));
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.ticket h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.ticket h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input and textarea styling */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+textarea {
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+}
+
+/* Placeholder styling */
+::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+/* Button styling */
+button, input[type="submit"] {
+    padding: 14px 24px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: #222;
+    background: linear-gradient(90deg, #ffffff, #e9e9e9);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    align-self: flex-start;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+button:hover, input[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+    background: linear-gradient(90deg, #111111, #333333);
+    color: #fff;
+}
+
+/* Reply styling */
+.reply {
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid rgba(255,255,255,0.3);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.reply p {
+    margin: 5px 0;
+    color: rgba(255,255,255,0.9);
+}
+
+.reply strong {
+    color: #ffd700;
+}
+
+.reply small {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+}
+
+/* Status styling */
+ticket p strong {
+    color: #ffd700;
+}
+
+/* No tickets message */
+div[th\\] {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+}
+
+/* Navigation buttons */
+body > button {
+    margin: 10px;
+    padding: 12px 20px;
+    font-size: 14px;
+}
+
+body > button:first-of-type {
+    margin-left: 0;
+}
+
+/* Small text styling */
+small {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+}
+
+/* Remove default br spacing */
+br {
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body > * {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .ticket {
+        padding: 20px;
+        margin: 15px 0;
+    }
+
+    .ticket h2 {
+        font-size: 20px;
+    }
+
+    .ticket h3 {
+        font-size: 16px;
+    }
+
+    input[type="text"], textarea {
+        padding: 12px 14px;
+    }
+
+    button, input[type="submit"] {
+        padding: 12px 20px;
+        width: 100%;
+        align-self: stretch;
+    }
+
+    body > button {
+        width: calc(100% - 20px);
+        margin: 5px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body > * {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .ticket {
+        padding: 15px;
+    }
+
+    .reply {
+        padding: 12px;
+    }
+}

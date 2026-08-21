@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Support Tickets</title>
+    <link rel="stylesheet" th:href="@{/css/submit_ticket.css}" />
+</head>
+<body>
+<h1>Support Tickets</h1>
+<p>Welcome, <strong th:text="${customer.firstName + ' ' + customer.lastName}"></strong></p>
+
+<div class="ticket">
+    <h2>Create New Ticket</h2>
+    <form th:action="@{/customer/submit-ticket}" method="post">
+        <input type="text" name="subject" placeholder="Subject" required style="width:100%; padding:8px; margin:5px 0;" /><br>
+        <textarea name="message" placeholder="Describe your issue..." required></textarea><br>
+        <button type="submit" style="padding:8px 16px;">Submit Ticket</button>
+    </form>
+</div>
+
+<h2>Your Tickets</h2>
+<div th:each="ticket : ${tickets}" class="ticket">
+    <h3>#<span th:text="${ticket.id}"></span> - <span th:text="${ticket.subject}"></span></h3>
+    <p><strong>Status:</strong> <span th:text="${ticket.status}"></span> |
+        <small th:text="${ticket.createdAt}"></small></p>
+    <p><strong>Your Message:</strong> <span th:text="${ticket.message}"></span></p>
+
+    <!-- Replies -->
+    <div th:each="reply : ${repliesByTicket[ticket.id]}" class="reply">
+        <p><strong>Support:</strong> <span th:text="${reply.replyText}"></span></p>
+        <small th:text="${reply.replyDate}"></small>
+    </div>
+
+    <!-- Reply Form -->
+    <form th:action="@{/customer/add-reply}" method="post">
+        <input type="hidden" name="ticketId" th:value="${ticket.id}" />
+        <textarea name="replyText" placeholder="Type your reply..." required></textarea><br>
+        <button type="submit">Send Reply</button>
+    </form>
+</div>
+
+<div th:if="${tickets == null or tickets.isEmpty()}">
+    <p>No tickets yet. Create one above!</p>
+</div>
+
+<br>
+<button onclick="location.href='/customer/dashboard'">Back to Dashboard</button>
+<button onclick="location.href='/logout'">Logout</button>
+</body>
+</html>

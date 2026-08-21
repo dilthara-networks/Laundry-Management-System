@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Customer Login</title>
+  <link rel="stylesheet" th:href="@{/css/customer_login.css}" />
+</head>
+<body>
+<div class="wrapper">
+  <h1>Customer Login</h1>
+
+  <!-- Show error only when ?error=true -->
+  <div th:if="${param.error}" class="error">
+    Invalid e-mail or password.
+  </div>
+
+  <form th:action="@{/customer/login}" method="post">
+    <div class="input-box">
+      <input type="email" name="email" placeholder="Email" required />
+    </div>
+    <div class="input-box">
+      <input type="password" name="password" placeholder="Password" required />
+    </div>
+    <input type="submit" class="btn" value="Login" />
+  </form>
+
+  <div class="register-link">
+    <p><a th:href="@{/customer/register}">Register new account</a></p>
+  </div>
+</div>
+</body>
+</html>

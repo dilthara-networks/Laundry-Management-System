@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+</head>
+<body>
+<div class="wrapper">
+    <h1>Welcome to the CleanWave Laundry System</h1>
+    <div class="button-group">
+        <a th:href="@{/customer/login}" class="btn">Customer Login</a>
+        <a th:href="@{/customer/register}" class="btn">Customer Register</a>
+        <a th:href="@{/staff/login}" class="btn">Staff Login</a>
+    </div>
+</div>
+</body>
+</html>
+

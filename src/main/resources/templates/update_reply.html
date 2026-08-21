@@ -1,0 +1,16 @@
+<!-- src/main/resources/templates/update_reply.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Reply</title>
+    <link rel="stylesheet" th:href="@{/css/update_reply.css}" />
+</head>
+<body>
+<h1>Update Reply</h1>
+<form th:action="@{/support/update-reply}" method="post">
+    <input type="hidden" name="id" th:value="${reply.id}" />
+    Content: <textarea name="content" th:text="${reply.content}" required></textarea><br>
+    <input type="submit" value="Update" />
+</form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!-- src/main/resources/templates/submit_feedback.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Submit Feedback</title>
+    <link rel="stylesheet" th:href="@{/css/submit_feedback.css}" />
+</head>
+<body>
+<div>
+    <h1>Submit Feedback</h1>
+    <form th:action="@{/customer/submit-feedback}" method="post">
+        <textarea name="content" required></textarea><br>
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+</body>
+</html>

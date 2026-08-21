@@ -1,0 +1,17 @@
+<!-- src/main/resources/templates/update_service.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Service</title>
+    <link rel="stylesheet" th:href="@{/css/update_service.css}" />
+</head>
+<body>
+<h1>Update Service</h1>
+<form th:action="@{/admin/update-service}" method="post">
+    <input type="hidden" name="id" th:value="${service.id}" />
+    Name: <input type="text" name="name" th:value="${service.name}" required /><br>
+    Price: <input type="number" name="price" th:value="${service.price}" required /><br>
+    <input type="submit" value="Update" />
+</form>
+</body>
+</html>

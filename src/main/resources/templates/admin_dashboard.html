@@ -1,0 +1,23 @@
+<!-- src/main/resources/templates/admin_dashboard.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard_common.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin_dashboard.css}" />
+    <script>
+        var hour = new Date().getHours();
+        var greeting = hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
+        window.onload = function() { document.getElementById("greeting").innerHTML = greeting; };
+    </script>
+</head>
+<body>
+<div class="wrapper">
+<h1>Admin Dashboard</h1>
+<p id="greeting"></p>
+<button onclick="location.href='/admin/set-services'">Set Services</button>
+<button onclick="location.href='/admin/manage-orders'">Manage Orders</button>
+<button onclick="location.href='/logout'">Logout</button>
+</div>
+</body>
+</html>

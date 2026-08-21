@@ -1,0 +1,21 @@
+<!-- src/main/resources/templates/customer_profile.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer Profile</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>Customer Profile: <span th:text="${customer.firstName + ' ' + customer.lastName}"></span></h1>
+<p>Email: <span th:text="${customer.email}"></span></p>
+<h2>Order History</h2>
+<table>
+    <tr><th>ID</th><th>Service</th><th>Status</th></tr>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.serviceEntity.name}"></td>
+        <td th:text="${order.status}"></td>
+    </tr>
+</table>
+</body>
+</html>

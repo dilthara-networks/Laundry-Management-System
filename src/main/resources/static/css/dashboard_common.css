@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url("../images/bg-customer.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+/* Glass panel container */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-top: 40px;
+}
+
+.wrapper {
+    position: relative;
+    z-index: 1;
+    width: 95%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Buttons */
+button, input[type="submit"], .btn {
+    background: linear-gradient(90deg, #ffffff, #e9e9e9);
+    color: #222;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin: 8px;
+}
+
+button:hover, input[type="submit"]:hover, .btn:hover {
+    background: linear-gradient(90deg, #111, #333);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+td {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tr:hover td {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Forms */
+form {
+    margin: 8px 0;
+}
+
+input[type="text"], input[type="number"], input[type="date"], select, textarea {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 100%;
+    max-width: 250px;
+    margin: 5px 0;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+/* Ticket/Feedback boxes */
+.ticket, .feedback-box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.reply {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    margin-top: 8px;
+    border-left: 4px solid #00bcd4;
+    border-radius: 6px;
+}
+
+.empty {
+    color: #ddd;
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Align logout/back buttons */
+.footer-buttons {
+    text-align: center;
+    margin-top: 40px;
+}

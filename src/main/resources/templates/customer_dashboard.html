@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard_common.css}" />
+    <link rel="stylesheet" th:href="@{/css/customer_dashboard.css}" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const hour = new Date().getHours();
+            const greeting = hour < 12 ? "Good Morning" :
+                hour < 18 ? "Good Afternoon" : "Good Evening";
+            const name = document.getElementById("fullName").textContent.trim();
+            document.getElementById("greeting").textContent = greeting + ", " + name;
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+<h1>Customer Dashboard</h1>
+
+<!-- Safe greeting -->
+<p id="greeting" style="font-weight: bold;"></p>
+<p id="fullName" th:text="${customer != null} ? ${customer.firstName + ' ' + customer.lastName} : 'User'" style="display:none;"></p>
+
+<!-- Safe customer details -->
+<div th:if="${customer != null}">
+    <p>First Name: <span th:text="${customer.firstName}"></span></p>
+    <p>Last Name: <span th:text="${customer.lastName}"></span></p>
+    <p>NIC: <span th:text="${customer.nic}"></span></p>
+    <p>Phone: <span th:text="${customer.phone}"></span></p>
+    <p>Address: <span th:text="${customer.address}"></span></p>
+    <p>Email: <span th:text="${customer.email}"></span></p>
+</div>
+
+<button onclick="location.href='/customer/create-order'">Create Order</button>
+<button onclick="location.href='/customer/submit-feedback'">Submit Feedback</button>
+<button onclick="location.href='/customer/submit-ticket'">Submit Ticket</button>
+<button onclick="location.href='/logout'">Logout</button>
+
+<h2>Order History</h2>
+<table th:if="${orders != null and !orders.isEmpty()}">
+    <tr><th>ID</th><th>Service</th><th>Delivery Type</th><th>Status</th></tr>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.serviceEntity != null} ? ${order.serviceEntity.name} : 'N/A'"></td>
+        <td th:text="${order.deliveryType}"></td>
+        <td th:text="${order.status}"></td>
+    </tr>
+</table>
+<p th:if="${orders == null or orders.isEmpty()}">No orders yet.</p>
+</div>
+</body>
+</html>

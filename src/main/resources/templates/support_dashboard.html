@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Support Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/support_dashboard.css}" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #2c3e50; }
+        .section { margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #f3efef; padding: 10px; text-align: left; }
+        th { background-color: #e6dfdf; }
+        .ticket { border: 1px solid #f4f0f0; margin: 15px 0; padding: 15px; border-radius: 8px; background: #f9f9f9; }
+        .reply { background: #eae7e7; padding: 10px; margin: 8px 0; border-left: 4px solid #007bff; border-radius: 4px; }
+        textarea { width: 100%; height: 70px; padding: 8px; border: 1px solid #ece5e5; border-radius: 4px; }
+        button, input[type="submit"] {
+            background: #007bff; color: white; border: none; padding: 8px 16px;
+            border-radius: 4px; cursor: pointer; margin-top: 5px;
+        }
+        button:hover, input[type="submit"]:hover { background: #0056b3; }
+        .empty { color: #777; font-style: italic; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+<h1>Support Dashboard</h1>
+
+<!-- FEEDBACK SUMMARY -->
+<div class="section">
+    <h2>Feedback Summary</h2>
+    <div th:if="${feedbacks == null or #lists.isEmpty(feedbacks)}" class="empty">
+        <p>No feedback received yet.</p>
+    </div>
+    <table th:if="${feedbacks != null and not #lists.isEmpty(feedbacks)}">
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Feedback</th>
+        </tr>
+        <tr th:each="feedback : ${feedbacks}">
+            <td th:text="${feedback.id}"></td>
+            <td th:text="${feedback.customer?.firstName + ' ' + feedback.customer?.lastName}"></td>
+            <td th:text="${feedback.content}"></td>
+        </tr>
+    </table>
+</div>
+
+<!-- TICKETS -->
+<div class="section">
+    <h2>Support Tickets</h2>
+    <p><strong>Total Tickets:</strong> <span th:text="${#lists.size(tickets)}"></span></p>
+
+    <div th:each="ticket : ${tickets}" class="ticket">
+        <h3>Ticket #<span th:text="${ticket.id}"></span> - <span th:text="${ticket.subject}"></span></h3>
+        <p><strong>Customer:</strong>
+            <span th:text="${ticket.customer?.firstName + ' ' + ticket.customer?.lastName}"></span>
+        </p>
+        <p><strong>Message:</strong> <span th:text="${ticket.message}"></span></p>
+        <p>
+            <strong>Status:</strong>
+            <span th:text="${ticket.status}"
+                  th:style="${ticket.status == 'OPEN'} ? 'color: orange' :
+                           (${ticket.status == 'CLOSED'} ? 'color: green' : 'color: blue')">
+            </span> |
+            <small th:text="${#temporals.format(ticket.createdAt, 'MMM dd, yyyy HH:mm')}"></small>
+        </p>
+
+        <!-- REPLIES -->
+        <div th:if="${repliesByTicket[ticket.id] != null and not #lists.isEmpty(repliesByTicket[ticket.id])}">
+            <div th:each="reply : ${repliesByTicket[ticket.id]}" class="reply">
+                <p><strong>Reply:</strong> <span th:text="${reply.replyText}"></span></p>
+                <small th:text="${#temporals.format(reply.replyDate, 'MMM dd, yyyy HH:mm')}"></small>
+            </div>
+        </div>
+        <div th:if="${repliesByTicket[ticket.id] == null or #lists.isEmpty(repliesByTicket[ticket.id])}" class="empty">
+            <p><em>No replies yet.</em></p>
+        </div>
+
+        <!-- SUPPORT REPLY FORM -->
+        <form th:action="@{/support/add-reply}" method="post">
+            <input type="hidden" name="ticketId" th:value="${ticket.id}" />
+            <textarea name="replyText" placeholder="Type your reply..." required></textarea><br>
+            <button type="submit">Send Reply</button>
+        </form>
+    </div>
+
+    <div th:if="${tickets == null or #lists.isEmpty(tickets)}" class="empty">
+        <p>No tickets yet.</p>
+    </div>
+</div>
+
+<br>
+<button onclick="location.href='/support/home'">Back to Home</button>
+<button onclick="location.href='/logout'">Logout</button>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Set Services</title>
+    <link rel="stylesheet" th:href="@{/css/set_services.css}" />
+</head>
+<body>
+<h1>Set Services</h1>
+<form th:action="@{/admin/add-service}" method="post">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required />
+    </div>
+    <input type="submit" value="Add Service" />
+</form>
+<table>
+    <tr><th>Name</th><th>Price</th><th>Actions</th></tr>
+    <tr th:each="service : ${services}">
+        <td th:text="${service.name}"></td>
+        <td th:text="${'$' + service.price}"></td>
+        <td>
+            <a th:href="@{/admin/update-service/{id}(id=${service.id})}">Update</a>
+            <form th:action="@{/admin/delete-service/{id}(id=${service.id})}" method="post" style="display:inline;">
+                <input type="submit" value="Delete" />
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

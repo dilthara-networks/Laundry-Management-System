@@ -1,0 +1,49 @@
+<!-- src/main/resources/templates/supervisor_dashboard.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Supervisor Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard_common.css}" />
+    <link rel="stylesheet" th:href="@{/css/supervisor_dashboard.css}" />
+</head>
+<body>
+<div class="wrapper">
+<h1>Supervisor Dashboard</h1>
+<h2>Assign Tasks</h2>
+<table>
+    <tr><th>Order ID</th><th>Assign</th></tr>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td>
+            <form th:action="@{/supervisor/assign-task}" method="post">
+                <input type="hidden" name="orderId" th:value="${order.id}" />
+                Operator: <input type="text" name="operator" required />
+                <input type="submit" value="Assign" />
+            </form>
+        </td>
+    </tr>
+</table>
+<h2>Tasks</h2>
+<table>
+    <tr><th>ID</th><th>Order ID</th><th>Operator</th><th>Status</th><th>Completion Time</th><th>Quality Checked</th><th>Actions</th></tr>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.order.id}"></td>
+        <td th:text="${task.operator}"></td>
+        <td th:text="${task.status}"></td>
+        <td th:text="${task.completionTime}"></td>
+        <td th:text="${task.qualityChecked ? 'Yes' : 'No'}"></td>
+        <td>
+            <form th:action="@{/supervisor/complete-task/{id}(id=${task.id})}" method="post" style="display:inline;">
+                <input type="submit" value="Complete" />
+            </form>
+            <form th:action="@{/supervisor/check-quality/{id}(id=${task.id})}" method="post" style="display:inline;">
+                <input type="submit" value="Check Quality" />
+            </form>
+        </td>
+    </tr>
+</table>
+<button onclick="location.href='/logout'">Logout</button>
+</div>
+</body>
+</html>

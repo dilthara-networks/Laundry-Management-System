@@ -1,0 +1,29 @@
+<!-- src/main/resources/templates/manage_orders.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Manage Orders</title>
+  <link rel="stylesheet" th:href="@{/css/manage_orders.css}" />
+</head>
+<body>
+<h1>Manage Orders</h1>
+<table>
+  <tr><th>ID</th><th>Customer</th><th>Service</th><th>Delivery Type</th><th>Status</th><th>Actions</th></tr>
+  <tr th:each="order : ${orders}">
+    <td th:text="${order.id}"></td>
+    <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
+    <td th:text="${order.serviceEntity.name}"></td>
+    <td th:text="${order.deliveryType}"></td>
+    <td th:text="${order.status}"></td>
+    <td>
+      <form th:action="@{/admin/accept-order/{id}(id=${order.id})}" method="post" style="display:inline;">
+        <input type="submit" value="Accept" />
+      </form>
+      <form th:action="@{/admin/decline-order/{id}(id=${order.id})}" method="post" style="display:inline;">
+        <input type="submit" value="Decline" />
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

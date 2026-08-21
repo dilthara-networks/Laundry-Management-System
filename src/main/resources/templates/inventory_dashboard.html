@@ -1,0 +1,34 @@
+<!-- src/main/resources/templates/inventory_dashboard.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory Manager Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard_common.css}" />
+    <link rel="stylesheet" th:href="@{/css/inventory_dashboard.css}" />
+</head>
+<body>
+<div class="wrapper">
+<h1>Inventory Manager Dashboard</h1>
+<form th:action="@{/inventory/add-item}" method="post">
+    Name: <input type="text" name="name" required /><br>
+    Quantity: <input type="number" name="quantity" required /><br>
+    <input type="submit" value="Add Item" />
+</form>
+<table>
+    <tr><th>Name</th><th>Quantity</th><th>Low Stock</th><th>Update</th></tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.lowStock ? 'Yes' : 'No'}"></td>
+        <td>
+            <form th:action="@{/inventory/update-item/{id}(id=${item.id})}" method="post">
+                Quantity: <input type="number" name="quantity" th:value="${item.quantity}" required />
+                <input type="submit" value="Update" />
+            </form>
+        </td>
+    </tr>
+</table>
+<button onclick="location.href='/logout'">Logout</button>
+</div>
+</body>
+</html>
